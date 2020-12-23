@@ -9,6 +9,7 @@
 ## C++
 * HelloWorld.cpp
 * Fibonnaci.cpp
+* Sorting.cpp
 
 ## Python
 * HelloWorld.py
