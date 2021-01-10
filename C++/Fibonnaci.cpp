@@ -20,8 +20,10 @@ int fib(int n) {
 }
 
 int main() {
-	int value = fib(3);
-    if (value == 3) {
-        std::cout << "Value of the 3rd term is" << value << std::endl;
+    std::cout << "Calling Fibonnaci method!" << std::endl;
+    int term = 6;
+	int value = fib(term);
+    if (value == 8) {
+        std::cout << "Value of term " << term << " in Fibonnaci sequence is " << value << std::endl;
     }
 }
