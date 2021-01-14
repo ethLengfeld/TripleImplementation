@@ -1,54 +1,35 @@
-def swapElements(array, x, y):
-    temp = array[x]
-    array[x] = array[y]
-    array[y] = temp
-    
+def swap (arr, x, y):
+    temp = arr[x]
+    arr[x] = arr[y]
+    arr[y] = temp
 
-def quickSort(array, low, high):
-    print('quickSort!')
-    if not array:
-        return array
-    if low >= high:
-        return array
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = (low - 1)
     
-    middle = (low + high) / 2
-    pivot = array[middle]
-    
-    i = low
-    j = high
-    
-    print('i:'+str(i))
-    print('j:'+str(j))
-    print('pivot:'+str(pivot))
-    while i <= j:
-        elementI = array[i]
-        while array[i] < pivot:
-            print('elementI:'+str(elementI))
-            i+=1
-            elementI = array[i]
-    
-        print('here0')
-        elementJ = array[j]
-        while array[j] > pivot:
-            print('elementJ:'+str(elementJ))
-            print('j:'+str(j))
-            j -= 1
-
-        if i >= j:
-            print('Swapping elements!')
-            swapElements(array, i, j)
-            i += 1
-            j -= 1
+    for j in range(low, high):
         
-    if low < j:
-        print('quickSort low, j')
-        quickSort(array, low, j)
-    if high > i:
-        print('quickSort i, high')
-        quickSort(array, i, high)
+        if arr[j] < pivot:
+            i = i+1
+            
+            swap(arr, i, j)
+    
+    i = i + 1
+    swap(arr, i, high)
+    
+    return i
+    
+def quickSort(arr, low, high):
+    if low < high:
+        
+        pivot = partition(arr, low, high)
+        
+        quickSort(arr, low, pivot-1)
+        quickSort(arr, pivot+1, high)
         
         
 array = [3,1,8,3,2]
-print(array[0])
 quickSort(array, 0, len(array)-1)
-print('array:'+str(array))
+for i in range(len(array)):
+    print("%d" %array[i])
+print('array is:'+str(array))
