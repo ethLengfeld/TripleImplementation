@@ -15,3 +15,4 @@
 * HelloWorld.py
 * Fibonnaci.py
 * Sorting.py
+	1. Quicksort
