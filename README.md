@@ -5,6 +5,7 @@
 * Fibonnaci.java
 * Sorting.java
 	1. Quicksort
+* NumberIsPalidrome.java
 
 ## C++
 * HelloWorld.cpp
