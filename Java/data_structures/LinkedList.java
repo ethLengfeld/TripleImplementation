@@ -54,11 +54,17 @@ public class LinkedList implements List<ListNode> {
 			this.head.setSuccessor(e);
 			return true;
 		}
-		ListNode curr = this.head;
-		while(curr.getSuccessor() != null) {
-			curr = curr.getSuccessor();
-		}
-		curr.setSuccessor(e);
+		// place new node at end of chain
+//		ListNode curr = this.head;
+//		while(curr.getSuccessor() != null) {
+//			curr = curr.getSuccessor();
+//		}
+//		curr.setSuccessor(e);
+		
+		// place new node at beginning of chain
+		ListNode temp = this.head.getSuccessor();
+		this.head.setSuccessor(e);
+		e.setSuccessor(temp);
 		
 		return true;
 	}
@@ -182,7 +188,13 @@ public class LinkedList implements List<ListNode> {
 		
 		linkedList.add(firstStudent);
 		linkedList.add(secondStudent);
+		// ethaniel -> ethan
+		System.out.println(linkedList.toString());
+
+		ListNode thirdStudent = new ListNode("ethanie");
 		
+		linkedList.add(thirdStudent);
+		// ethanie -> ethaniel -> ethan
 		System.out.println(linkedList.toString());
 	}
 }
