@@ -170,7 +170,7 @@ public class LinkedList implements List<ListNode> {
 			} else {
 				sb.append(curr.getName());
 			}
-			
+
 		}
 		return sb.toString();
 	}
