@@ -36,6 +36,6 @@ public class WordCircle {
 
 		assertEquals("Is word circle", true, wordCircle);
 	}
-	
-	// TODO check if any circle exists 
+
+	// TODO check if any circle exists
 }
