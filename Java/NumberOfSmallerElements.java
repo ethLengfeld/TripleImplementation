@@ -10,9 +10,9 @@ public class NumberOfSmallerElements {
 		int[] smallerElementsToLeft = new int[array.length];
 
 		int numSmaller = 0;
-		for(int i = 0; i < array.length; i++) {
-			for(int j = i; j < array.length; j++) {
-				if(i != j && array[i] > array[j]) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = i; j < array.length; j++) {
+				if (i != j && array[i] > array[j]) {
 					numSmaller++;
 				}
 			}
@@ -22,12 +22,21 @@ public class NumberOfSmallerElements {
 
 		return smallerElementsToLeft;
 	}
-	
+
 	@Test
 	public void testSample() {
-		int[] array = {3,4,9,6,1};
+		int[] array = { 3, 4, 9, 6, 1 };
 		int[] numSmaller = NumberOfSmallerElements.countNumberOfSmallerElements(array);
-		
-		assertEquals("Test sample problem","[1,1,2,1,0]", ArrayUtils.getIntArray(numSmaller));
+
+		assertEquals("Test sample problem", "[1,1,2,1,0]", ArrayUtils.getIntArray(numSmaller));
 	}
+
+	@Test
+	public void testAllBigger() {
+		int[] array = { 3, 4, 9, 11, 100 };
+		int[] numSmaller = NumberOfSmallerElements.countNumberOfSmallerElements(array);
+
+		assertEquals("Test sample problem", "[0,0,0,0,0]", ArrayUtils.getIntArray(numSmaller));
+	}
+
 }
