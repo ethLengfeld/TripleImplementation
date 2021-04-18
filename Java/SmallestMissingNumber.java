@@ -25,4 +25,11 @@ public class SmallestMissingNumber {
 		int smallestMissing = SmallestMissingNumber.findSmallestNumberCheats(array);
 		assertEquals("Two is missing", 2, smallestMissing);
 	}
+
+	@Test
+	public void testMissingOne() {
+		int[] array = { 3, 4, 2, -1 };
+		int smallestMissing = SmallestMissingNumber.findSmallestNumberCheats(array);
+		assertEquals("One is missing", 1, smallestMissing);
+	}
 }
