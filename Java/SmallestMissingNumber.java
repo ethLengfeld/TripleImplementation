@@ -12,7 +12,7 @@ public class SmallestMissingNumber {
 		int currNum = array[0];
 		for (int i = 1; i < array.length; i++) {
 			if (currNum > 0 && array[i] != currNum + 1) {
-				return currNum +1;
+				return currNum + 1;
 			}
 			currNum = array[i];
 		}
