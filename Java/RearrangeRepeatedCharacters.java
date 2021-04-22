@@ -5,7 +5,6 @@ public class RearrangeRepeatedCharacters {
 		String rearranged = "None";
 		
 		
-		
 		return rearranged;
 	}
 }
