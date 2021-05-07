@@ -12,7 +12,7 @@ public class Tree implements TreeInterface {
 
 	@Override
 	public void getDepth() {
-		// TODO Auto-generated method stub
+		// TODO update interface
 
 	}
 
