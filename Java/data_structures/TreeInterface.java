@@ -2,7 +2,7 @@ package data_structures;
 
 public interface TreeInterface {
 
-	public void getDepth();
+	public int getMaxDepth(TreeNode node);
 
 	public void printTreeBoustrophedonOrder(TreeNode node);
 }

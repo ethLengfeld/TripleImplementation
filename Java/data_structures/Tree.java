@@ -11,10 +11,20 @@ public class Tree implements TreeInterface {
 	}
 
 	@Override
-	public void getDepth() {
-		// TODO update interface
-
+	public int getMaxDepth(TreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+		else if (root.getLeftChild() == null && root.getRightChild() == null) {
+			return 1;
+		}
+		else {
+			int leftDepth = this.getMaxDepth(root.getLeftChild());
+			int rightDepth = this.getMaxDepth(root.getRightChild());
+			return 1 + (leftDepth > rightDepth ? leftDepth : rightDepth);
+		}
 	}
+
 
 	@Override
 	public void printTreeBoustrophedonOrder(TreeNode node) {
