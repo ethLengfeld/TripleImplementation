@@ -57,6 +57,21 @@ public class Tree implements TreeInterface {
 			}
 		}
 	}
+	
+	public boolean isBinarySearchTree(TreeNode root) {
+		if (root == null) {
+			return true;
+		}
+
+		if (root.getLeftChild() != null && root.getLeftChild().getIntValue() > root.getIntValue()) {
+			return false;
+		}
+		if (root.getRightChild() != null && root.getRightChild().getIntValue() < root.getIntValue()) {
+			return false;
+		}
+
+		return isBinarySearchTree(root.getLeftChild()) && isBinarySearchTree(root.getRightChild());
+	}
 
 	public TreeNode getRoot() {
 		return this.root;
