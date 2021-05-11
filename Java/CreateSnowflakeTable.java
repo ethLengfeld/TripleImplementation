@@ -1,28 +1,53 @@
+import static org.junit.Assert.assertEquals;
+
+import org.json.JSONObject;
 import org.junit.Test;
 
 public class CreateSnowflakeTable {
 
-	public static String readChiFood(String context) {
-	JSONObject json = new JSONObject(context);
-	//parse json
-	StringBuilder sb = new StringBuilder("Create Table CHICAGO.RESTAURANTS( ");
-	sb.append("inspection_id varchar(20),");
-	sb.append("dba_name varchar(20),");
-	sb.append("aka_name varchar(20),");
-	sb.append("license_ varchar(20),");
-	sb.append("facility_type varchar(20),");
-	sb.append("address varchar(50),");
-	sb.append("city varchar(50),");
-	sb.append("state varchar(20),");
-	sb.append("zip varchar(10),");
-	sb.append("/);");
+	public static String createChiFoodTable() {
+		// parse json
+		StringBuilder sb = new StringBuilder("CREATE TABLE CHICAGO.RESTAURANTS ( ");
+		sb.append("inspection_id varchar(20),");
+		sb.append("dba_name varchar(20),");
+		sb.append("aka_name varchar(20),");
+		sb.append("license_ varchar(20),");
+		sb.append("facility_type varchar(20),");
+		sb.append("address varchar(50),");
+		sb.append("city varchar(50),");
+		sb.append("state varchar(20),");
+		sb.append("zip varchar(10)");
+		sb.append(");");
 
 		return sb.toString();
 	}
-
 	
+	public static String createChiInsertStatement(String context) {
+		JSONObject json = new JSONObject(context);
+		System.out.println(json.toString());
+		String insert = "INSERT INTO CHICAGO.RESTAURANTS (inspection_id,dba_name,aka_name,license_,facility_type,address,city,state,zip) VALUES {VALUES};";
+		StringBuilder sb = new StringBuilder();
+		sb.append("('"+json.getString("inspection_id")+"'),");
+		sb.append("('"+json.getString("dba_name")+"'),");
+		sb.append("('"+json.getString("aka_name")+"'),");
+		sb.append("('"+json.getString("license_")+"'),");
+		sb.append("('"+json.getString("facility_type")+"'),");
+		sb.append("('"+json.getString("address")+"'),");
+		sb.append("('"+json.getString("city")+"'),");
+		sb.append("('"+json.getString("state")+"'),");
+		sb.append("('"+json.getString("zip")+"')");		
+		
+		return insert.replace("{VALUES}", sb.toString());
+	}
+
 	@Test
-	public void testChiResturantTable() {
+	public void testCreateChiFoodTable() {
+		String table = CreateSnowflakeTable.createChiFoodTable();
+		System.out.println(table);
+		assertEquals("Snowflake table", "CREATE TABLE CHICAGO.RESTAURANTS ( inspection_id varchar(20),dba_name varchar(20),aka_name varchar(20),license_ varchar(20),facility_type varchar(20),address varchar(50),city varchar(50),state varchar(20),zip varchar(10));", table);
+	}
+	@Test
+	public void testCreateChiInsertStatement() {
 		String context = "{\r\n" + 
 				"   \"inspection_id\":\"2509319\",\r\n" + 
 				"   \"dba_name\":\"HAI YEN\",\r\n" + 
@@ -44,6 +69,9 @@ public class CreateSnowflakeTable {
 				"      \"latitude\":\"-87.65714083118823\",\r\n" + 
 				"      \"longitude\":\"41.97317176563255\"\r\n" + 
 				"   }\r\n" + 
-				"}";
+				"}\r\n";
+		String statement = CreateSnowflakeTable.createChiInsertStatement(context);
+		System.out.println(statement);
+		assertEquals("Snowflake insert statement", "INSERT INTO CHICAGO.RESTAURANTS (inspection_id,dba_name,aka_name,license_,facility_type,address,city,state,zip) VALUES ('2509319'),('HAI YEN'),('HAI YEN'),('10235'),('Restaurant'),('1055 W ARGYLE ST '),('CHICAGO'),('IL'),('60640');", statement);
 	}
 }
