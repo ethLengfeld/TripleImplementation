@@ -1,3 +1,4 @@
+from DataEvent import DataEvent
 import urllib.request
 import json
 
@@ -33,14 +34,23 @@ def returnData():
 def parseData(jsonData):
     print("Started procedure <parseData>")
     jsonLoaded = json.loads(jsonData)
+    print(jsonLoaded)
 
-    print("Printing all events from \""+jsonLoaded["metadata"]["title"]+"\"")
+    print("Getting all events from \""+jsonLoaded["metadata"]["title"]+"\"")
 
-    count = 1
+    event_list = []
+    count = 0
     for currObj in jsonLoaded["features"]:
-        print("Event Number: "+str(count)+", Place: "+currObj["properties"]["place"])
-        count += 1
+        place = currObj["properties"]["place"]
+        coords = currObj["geometry"]["coordinates"]
+        lat_n = coords[1]
+        long_w = coords[0]
+        event = DataEvent(place, lat_n, long_w)
+        event_list.append(event)
 
+    print("There are " + str(len(event_list)) + " events is this data")
+    for curr_event in event_list:
+        curr_event.list_event_details()
     print("Completed procedure <parseData>")
 
 
