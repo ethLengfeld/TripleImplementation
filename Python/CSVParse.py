@@ -1,3 +1,6 @@
+# Junior Data Engineer Challenge
+# Ethan Lengfeld
+
 import csv
 from configparser import ConfigParser
 import psycopg2
@@ -13,13 +16,15 @@ CREATE_TABLE = """CREATE TABLE event_finance_customer_order_line_items (
         updated_at     timestamp without time zone
     );"""
 
+# main function to get db properties,
+# then create table, and finally insert
 def main():
     props = config('database.ini', 'postgresql')
     print("props:"+str(props))
-    # create_table(props)
+    create_table(props)
     parse_CSV_file_and_upload(props)
 
-
+# read postgresql configuration from database.ini
 def config(filename, section):
     print("Started <config> function")
     parser = ConfigParser()
@@ -33,50 +38,60 @@ def config(filename, section):
     print("Completed <config> function")
     return props
 
-
-def create_table(props):
+# execute created table statement
+def create_table(props, statement=CREATE_TABLE):
     print("Started <create_table> function")
     conn = None
+    count = 0
     try:
         conn = psycopg2.connect(**props)
-
-        print(CREATE_TABLE)
-        # TODO 
+        # defined above
+        print(statement)
         cursor = conn.cursor()
-        cursor.execute(CREATE_TABLE)
+        # cursor.execute(statement)
         # count = cursor.fetchone()
-        # print(str(count[0]))
-
         cursor.close()
     except Exception as error:
         print('Error: '+str(error))
 
     print("Completed <create_table> function")
 
+    return count
 
+# Parse the csv file and upload to table
 def parse_CSV_file_and_upload(props):
     print("Started <parse_CSV_file_and_upload> function")
     conn = psycopg2.connect(**props)
     cursor = conn.cursor()
+    # open file to write and save off created statements
     with open("insert_statements.txt", "w") as f:
-        with open(r'C:\Users\e_len\Downloads\event_finance_customer_order_line_items.csv') as csv_file:
+        with open('event_finance_customer_order_line_items.csv',"r") as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             count = 0;
             for row in csv_reader:
+                # read header row
                 if count == 0:
                     print(f'Columns are {",".join(row)}')
-                    count += 1
                 else:
-                    insert_data = """INSERT INTO event_finance_customer_order_line_items(id,customer_order_id,event_id, event_type, line_item_id) VALUES ('{}','{}',{},'{}','{}');"""
-                    query = insert_data.format(row[0],row[1],row[2],row[3],row[4])
-                    cursor.execute(query)
-                    f.write(query+"\n")
-                    count += 1
-
+                    # get insert into statment
+                    statement = get_insert_into_query(row)
+                    # cursor.execute(statement)
+                    # write to file so we have record of statements
+                    f.write(statement+"\n")
+                count += 1
         print(f'Num rows processed in csv: {count}')
     cursor.close()
+    f.close()
     print("Completed <parse_CSV_file_and_upload> function")
 
+# Get the insert into statement with row values injected
+def get_insert_into_query(row):
+    if len(row) < 5:
+        return None
+    insert_data = """INSERT INTO event_finance_customer_order_line_items(id,customer_order_id,event_id, event_type, line_item_id) VALUES ('{}','{}',{},'{}','{}');"""
+    
+    statement = insert_data.format(row[0],row[1],row[2],row[3],row[4])
+    return statement
 
 if __name__ == "__main__":
     main()
