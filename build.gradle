@@ -15,3 +15,11 @@ repositories {
 dependencies {
 	implementation 'org.json:json:20171018'
 }
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'Java'
+        }
+    }
+}
