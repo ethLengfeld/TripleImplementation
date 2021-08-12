@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
  * For example, given [-9, -2, 0, 2, 3], return [0, 4, 4, 9, 81].
  * @author elengfeld
  */
+
 public class SquaredAndSorted {
 
     public static int[] squareAndSortArray(int[] array) {
