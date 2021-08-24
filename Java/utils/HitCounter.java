@@ -1,9 +1,6 @@
 package utils;
 
-import apple.laf.JRSUIConstants;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +8,7 @@ public class HitCounter {
 
     private static HitCounter counter = null;
 
-    private static List<Long> timeStamps = new ArrayList<>();
+    private static final List<Long> timeStamps = new ArrayList<>();
 
     private HitCounter() {
     }
@@ -52,4 +49,16 @@ public class HitCounter {
         return numInRange;
     }
 
+    public static void main(String[] args) {
+        HitCounter counter = HitCounter.getInstance();
+        counter.record(100);
+        counter.record(106);
+        counter.record(5);
+        counter.record(500);
+        counter.record(343);
+        counter.record(78);
+
+        System.out.println("total:" + counter.total());
+        System.out.println("in interval:" + counter.range(78, 343));
+    }
 }
