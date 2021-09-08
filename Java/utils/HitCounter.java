@@ -61,4 +61,5 @@ public class HitCounter {
         System.out.println("total:" + counter.total());
         System.out.println("in interval:" + counter.range(78, 343));
     }
+
 }
