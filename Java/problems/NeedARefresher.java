@@ -25,7 +25,8 @@ public class NeedARefresher {
             }
         } while ( !"y".equals(yesOrNo) );
 
-        System.out.print("the first digit of " + x + " is " + NeedARefresher.getFirstDigit(x));
+        System.out.println("the first digit of " + x + " is " + NeedARefresher.getFirstDigit(x));
+        System.out.println("the last digit of " + x + " is " + NeedARefresher.getLastDigit(x));
 
     }
 
@@ -34,4 +35,8 @@ public class NeedARefresher {
         return Integer.parseInt(strNum.substring(0,1));
     }
 
+    private static int getLastDigit(int num) {
+        String strNum = Integer.toString(num);
+        return Integer.parseInt(strNum.substring(strNum.length()-1, strNum.length()));
+    }
 }
