@@ -7,21 +7,30 @@ public class NeedARefresher {
     public static void main(String[] args) {
         int x = 0;
         String yesOrNo = "n";
+        String line = null;
         Scanner scnr = new Scanner(System.in);
+        boolean validNum = false;
 
         do {
             if ("n".equals(yesOrNo)) {
                 System.out.print("Please input an integer here -> ");
-                x = scnr.nextInt();
-                // eat return statement
-                scnr.nextLine();
+                line = scnr.nextLine();
+                try {
+                    x = Integer.parseInt(line);
+                    validNum = true;
+                } catch(NumberFormatException e) {
+                    System.out.println("\"" + line + "\" isn't a integer, stinky..");
+                    validNum = false;
+                }
             }
 
-            System.out.println("You just inputted " + x);
-            System.out.print("Is that correct? Input Y (yes) or N (no) -> ");
-            yesOrNo = scnr.nextLine().toLowerCase();
-            if (!"n".equals(yesOrNo) && !"y".equals(yesOrNo)) {
-                System.out.println(yesOrNo + " is not option.. Try again");
+            if (validNum) {
+                System.out.println("You just inputted " + line);
+                System.out.print("Is that correct? Input Y (y) or N (n) -> ");
+                yesOrNo = scnr.nextLine().toLowerCase();
+                if (!"n".equals(yesOrNo) && !"y".equals(yesOrNo)) {
+                    System.out.println(yesOrNo + " is not option.. Try again");
+                }
             }
         } while ( !"y".equals(yesOrNo) );
 
