@@ -26,7 +26,7 @@ public class NeedARefresher {
 
             if (validNum) {
                 System.out.println("You just inputted " + line);
-                System.out.print("Is that correct? Input Y (y) or N (n) -> ");
+                System.out.print("Is that correct? Input Yes (y) or No (n) -> ");
                 yesOrNo = scnr.nextLine().toLowerCase();
                 if (!"n".equals(yesOrNo) && !"y".equals(yesOrNo)) {
                     System.out.println(yesOrNo + " is not option.. Try again");
