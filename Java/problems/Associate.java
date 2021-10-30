@@ -51,6 +51,7 @@ public class Associate {
         this.birthYear = birthYear;
     }
 
+
     public long getSalary() {
         return this.salary;
     }
