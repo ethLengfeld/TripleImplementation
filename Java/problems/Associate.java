@@ -11,6 +11,15 @@ public class Associate {
     private int birthYear;
     private long salary;
 
+    public Associate() {
+        this.firstName = "John";
+        this.lastName = "Doe";
+        this.birthMonth = 12;
+        this.birthDay = 31;
+        this.birthYear = 1999;
+        this.salary = 100000;
+        Associate.numAssociates++;
+    }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -68,4 +77,11 @@ public class Associate {
         Associate.numAssociates = numAssociates;
     }
 
+    public static void main(String[] args) {
+        Associate assoc1 = new Associate();
+        System.out.println("Number of associates: " + Associate.getNumAssociates());
+        Associate assoc2 = new Associate();
+        System.out.println("Number of associates: " + getNumAssociates());
+
+    }
 }
