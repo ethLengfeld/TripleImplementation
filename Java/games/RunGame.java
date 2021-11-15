@@ -40,6 +40,7 @@ public class RunGame {
                 System.out.println("--------------------------------------------------------------");
                 System.out.println("--------------------     HANGMAN     -------------------------");
                 System.out.println("--------------------------------------------------------------");
+                System.out.println("\n\n\n");
 
                 game = new HangmanGame(solution);
                 game.execute();

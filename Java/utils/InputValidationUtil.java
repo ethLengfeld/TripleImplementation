@@ -2,6 +2,8 @@ package utils;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -22,6 +24,26 @@ public class InputValidationUtil {
             }
         }
         return true;
+    }
+
+    public static char validateHangmanGuess(String guess, List<Character> lettersGuessed) throws Exception {
+        if(guess.length() > 1) {
+            throw new Exception("Guess was longer than one character.");
+        }
+
+        char guessedLetter = guess.charAt(0);
+        int charVal = guessedLetter;
+        if (charVal < 65 || charVal > 90) {
+            throw new Exception("Guess was not a valid character.");
+        }
+
+        if (!lettersGuessed.contains(Character.valueOf(guessedLetter))) {
+            lettersGuessed.add(guessedLetter);
+        } else {
+            throw new Exception("Letter was already guessed.");
+        }
+
+        return guessedLetter;
     }
 
     @Test
