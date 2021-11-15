@@ -28,18 +28,21 @@ public class InputValidationUtil {
 
     public static char validateHangmanGuess(String guess, List<Character> lettersGuessed) throws Exception {
         if(guess.length() > 1) {
+            // TODO create custom exception
             throw new Exception("Guess was longer than one character.");
         }
 
         char guessedLetter = guess.charAt(0);
         int charVal = guessedLetter;
         if (charVal < 65 || charVal > 90) {
+            // TODO create custom exception
             throw new Exception("Guess was not a valid character.");
         }
 
         if (!lettersGuessed.contains(Character.valueOf(guessedLetter))) {
             lettersGuessed.add(guessedLetter);
         } else {
+            // TODO create custom exception
             throw new Exception("Letter was already guessed.");
         }
 
