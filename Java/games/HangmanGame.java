@@ -41,7 +41,7 @@ public class HangmanGame implements IGame{
 
     @Override
     public void execute() {
-
+// TODO add functionality to guess word
         while(incorrectGuesses < NUM_OF_INCORRECT_GUESSES) {
             int guessesLeft = NUM_OF_INCORRECT_GUESSES - incorrectGuesses;
             System.out.print("You have " + guessesLeft + " incorrect");
