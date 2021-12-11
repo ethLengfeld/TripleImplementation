@@ -61,6 +61,7 @@ public class HangmanGame implements IGame{
             this.printSolutionArray();
 
             char guessedLetter = '-';
+
             while(guessedLetter == '-') {
                 System.out.print("Guess a letter ->  ");
                 String guess = HangmanGame.scnr.nextLine().toUpperCase();
