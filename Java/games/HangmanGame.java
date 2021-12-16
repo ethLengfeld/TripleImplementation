@@ -45,6 +45,7 @@ public class HangmanGame implements IGame{
         while(incorrectGuesses < NUM_OF_INCORRECT_GUESSES) {
             int guessesLeft = NUM_OF_INCORRECT_GUESSES - incorrectGuesses;
             System.out.print("You have " + guessesLeft + " incorrect");
+
             if(guessesLeft > 1) {
                 System.out.println(" guesses remaining");
             } else {
