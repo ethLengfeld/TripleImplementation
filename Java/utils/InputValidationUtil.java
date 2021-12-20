@@ -10,13 +10,12 @@ import static org.junit.Assert.assertTrue;
 public class InputValidationUtil {
 
     /**
-     *
      * @param solution
      * @return true - if the solution is a valid Hangman solution
-     *                i.e. no letters or symbols
+     * i.e. no letters or symbols
      */
     public static final boolean validateHangmanSolution(String solution) {
-        for(Character currChar : solution.toUpperCase().toCharArray()) {
+        for (Character currChar : solution.toUpperCase().toCharArray()) {
             int charVal = currChar;
             // A - 65, Z - 90, Space - 32
             if ((charVal < 65 || charVal > 90) && charVal != 32) {
@@ -27,7 +26,7 @@ public class InputValidationUtil {
     }
 
     public static char validateHangmanGuess(String guess, List<Character> lettersGuessed) throws Exception {
-        if(guess.length() > 1) {
+        if (guess.length() > 1) {
             // TODO create custom exception
             throw new Exception("Guess was longer than one character.");
         }
