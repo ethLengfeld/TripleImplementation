@@ -22,8 +22,16 @@ public class HangmanGame implements IGame{
 
     private static Scanner scnr;
 
-    // TODO make singleton
-    public HangmanGame(String solution) {
+    private static HangmanGame hangman;
+
+    public static HangmanGame getInstance(String solution) {
+        if (hangman == null) {
+            hangman = new HangmanGame(solution);
+        }
+        return hangman;
+    }
+
+    private HangmanGame(String solution) {
         this.incorrectGuesses = 0;
         this.solution = solution;
         this.lettersGuessed = new ArrayList<>();
@@ -147,8 +155,6 @@ public class HangmanGame implements IGame{
     }
 
     public void printMan() {
-//        System.out.println("   ________");
-//        System.out.println("  |       |");
         if (incorrectGuesses >= 1) {
             System.out.println(" O ");
             if (incorrectGuesses == 2) {

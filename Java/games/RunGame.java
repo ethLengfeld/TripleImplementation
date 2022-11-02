@@ -21,6 +21,7 @@ public class RunGame {
 
             System.out.println("Please enter the game you'd like to play:");
             System.out.println("1. Hangman");
+            System.out.println("2. Tic Tac Toe");
             System.out.println("-1. EXIT");
             System.out.print("Enter ->  ");
             gameInput = scnr.nextLine();
@@ -46,7 +47,11 @@ public class RunGame {
                     System.out.println("--------------------------------------------------------------");
                     System.out.println("\n\n\n");
 
-                    game = new HangmanGame(solution);
+                    game = HangmanGame.getInstance(solution);
+                    game.execute();
+                    break;
+                case "2":
+                    game = TicTacToeGame.getInstance(3);
                     game.execute();
                     break;
                 case "-1":
