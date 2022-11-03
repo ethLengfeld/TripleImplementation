@@ -3,8 +3,6 @@ package games;
 public class TicTacToeGame implements IGame{
     private int[][] guesses;
 
-    private int boardSize;
-
     private String drawBoardRow;
 
     private static TicTacToeGame ticTacToe;
@@ -17,12 +15,18 @@ public class TicTacToeGame implements IGame{
     }
 
     private TicTacToeGame(int boardSize) {
-        drawBoardRow = new StringBuilder(boardSize).append("_",0,boardSize-1).toString();
+        drawBoardRow = new String(new char[boardSize*2]).replace("\0", "_");
         guesses = new int[boardSize][boardSize];
     }
 
     public void execute() {
-
+        // guess
+            // Top Left, Middle, Right
+            // Middle Left, Middle, Right
+            // Bottom Left, Middle, Right
+        // guess corresponds 1-9
+        int guessedPos = 0;
+        printGame();
     }
 
     public void printGame() {
