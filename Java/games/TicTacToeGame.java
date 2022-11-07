@@ -15,7 +15,7 @@ public class TicTacToeGame implements IGame{
     }
 
     private TicTacToeGame(int boardSize) {
-        drawBoardRow = new String(new char[boardSize*2]).replace("\0", "_");
+        drawBoardRow = new String(new char[(boardSize*2)+1]).replace("\0", "_");
         guesses = new int[boardSize][boardSize];
     }
 
@@ -32,12 +32,23 @@ public class TicTacToeGame implements IGame{
     public void printGame() {
         for(int i = 0; i < guesses.length; i++) {
             for(int j = 0; j < guesses[i].length; j++) {
-                System.out.print(guesses[i][j]);
+                if(guesses[i][j] == 1) {
+                    System.out.print("X");
+                }
+                else if(guesses[i][j] == 2) {
+                    System.out.print("O");
+                }
+                else {
+                    System.out.print(" ");
+                }
                 if(guesses[i].length != j) {
                     System.out.print("|");
                 }
             }
-            System.out.print("\n" + drawBoardRow + "\n");
+            if(i+1 < guesses.length) {
+                System.out.print("\n" + drawBoardRow + "\n");
+            }
         }
+        System.out.println("");
     }
 }
