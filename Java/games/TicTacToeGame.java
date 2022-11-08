@@ -1,11 +1,15 @@
 package games;
 
+import java.util.Scanner;
+
 public class TicTacToeGame implements IGame{
     private int[][] guesses;
 
     private String drawBoardRow;
 
     private static TicTacToeGame ticTacToe;
+
+    private static Scanner scnr;
 
     public static TicTacToeGame getInstance(int boardSize) {
         if(ticTacToe == null) {
@@ -17,16 +21,45 @@ public class TicTacToeGame implements IGame{
     private TicTacToeGame(int boardSize) {
         drawBoardRow = new String(new char[(boardSize*2)+1]).replace("\0", "_");
         guesses = new int[boardSize][boardSize];
+        scnr = new Scanner(System.in);
     }
 
     public void execute() {
-        // guess
+        boolean over = false;
+
+        while(!over) {
+            // guess
             // Top Left, Middle, Right
             // Middle Left, Middle, Right
             // Bottom Left, Middle, Right
-        // guess corresponds 1-9
-        int guessedPos = 0;
-        printGame();
+            // guess corresponds 1-9
+            int guessedPos = 0;
+            int xOrO = 0;
+            while (xOrO == 0) {
+                System.out.println("Please enter the number position for your mark, 1 thru 9");
+                System.out.println("1: Top Left      " + "2: Top Middle      " + "3: Top Right\n" +
+                        "4: Middle Left   " + "5: Middle Middle   " + "6: Middle Right\n" +
+                        "7: Bottom Left   " + "8: Bottom Middle   " + "9: Bottom Right");
+                String input = scnr.nextLine().toUpperCase();
+
+                try {
+                    char guess = input.charAt(0);
+                    if (guess == 'X') {
+                        xOrO = 1;
+                    } else if (guess == 'O') {
+                        xOrO = 2;
+                    }
+                    if(guess == 'Q') {
+                        over = true;
+                    }
+                } catch (Exception e) {
+                    System.out.println("Bad guess, please select X or O.");
+                }
+                // TODO: check if pos it taken, if not add to guesses
+            }
+            printGame();
+            // TODO: check for three in a row
+        }
     }
 
     public void printGame() {
