@@ -26,38 +26,72 @@ public class TicTacToeGame implements IGame{
 
     public void execute() {
         boolean over = false;
+        boolean isX = true;
+        char currMark = 'X';
+        System.out.println("X goes first!");
 
         while(!over) {
-            // guess
-            // Top Left, Middle, Right
-            // Middle Left, Middle, Right
-            // Bottom Left, Middle, Right
-            // guess corresponds 1-9
+            if(isX) {
+                currMark = 1;
+            } else {
+                currMark = 2;
+            }
+
             int guessedPos = 0;
-            int xOrO = 0;
-            while (xOrO == 0) {
-                System.out.println("Please enter the number position for your mark, 1 thru 9");
+            while (guessedPos == 0) {
+                System.out.println("Please enter the number position for your, 1 thru 9");
                 System.out.println("1: Top Left      " + "2: Top Middle      " + "3: Top Right\n" +
                         "4: Middle Left   " + "5: Middle Middle   " + "6: Middle Right\n" +
                         "7: Bottom Left   " + "8: Bottom Middle   " + "9: Bottom Right");
                 String input = scnr.nextLine().toUpperCase();
 
                 try {
-                    char guess = input.charAt(0);
-                    if (guess == 'X') {
-                        xOrO = 1;
-                    } else if (guess == 'O') {
-                        xOrO = 2;
+                    guessedPos = Integer.parseInt(input);
+                    switch(guessedPos) {
+                        case 1:
+                            guesses[0][0] = currMark;
+                            break;
+                        case 2:
+                            guesses[0][1] = currMark;
+                            break;
+                        case 3:
+                            guesses[0][2] = currMark;
+                            break;
+                        case 4:
+                            guesses[1][0] = currMark;
+                            break;
+                        case 5:
+                            guesses[1][1] = currMark;
+                            break;
+                        case 6:
+                            guesses[1][2] = currMark;
+                            break;
+                        case 7:
+                            guesses[2][0] = currMark;
+                            break;
+                        case 8:
+                            guesses[2][1] = currMark;
+                            break;
+                        case 9:
+                            guesses[2][2] = currMark;
+                            break;
                     }
-                    if(guess == 'Q') {
+                    if(guessedPos == -1) {
                         over = true;
                     }
                 } catch (Exception e) {
-                    System.out.println("Bad guess, please select X or O.");
+                    System.out.println("Bad guess, please select a valid position");
                 }
                 // TODO: check if pos it taken, if not add to guesses
             }
             printGame();
+
+            // switch turn
+            if(isX) {
+                isX = false;
+            } else {
+                isX = true;
+            }
             // TODO: check for three in a row
         }
     }
