@@ -49,31 +49,76 @@ public class TicTacToeGame implements IGame{
                     guessedPos = Integer.parseInt(input);
                     switch(guessedPos) {
                         case 1:
-                            guesses[0][0] = currMark;
+                            if (guesses[0][0] == 0) {
+                                guesses[0][0] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 2:
-                            guesses[0][1] = currMark;
+                            if (guesses[0][1] == 0) {
+                                guesses[0][1] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 3:
-                            guesses[0][2] = currMark;
+                            if (guesses[0][2] == 0) {
+                                guesses[0][2] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 4:
-                            guesses[1][0] = currMark;
+                            if (guesses[1][0] == 0) {
+                                guesses[1][0] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 5:
-                            guesses[1][1] = currMark;
+                            if (guesses[1][1] == 0) {
+                                guesses[1][1] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 6:
-                            guesses[1][2] = currMark;
+                            if (guesses[1][2] == 0) {
+                                guesses[1][2] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 7:
-                            guesses[2][0] = currMark;
+                            if (guesses[2][0] == 0) {
+                                guesses[2][0] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 8:
-                            guesses[2][1] = currMark;
+                            if (guesses[2][1] == 0) {
+                                guesses[2][1] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                         case 9:
-                            guesses[2][2] = currMark;
+                            if (guesses[2][2] == 0) {
+                                guesses[2][2] = currMark;
+                            } else {
+                                guessedPos = 0;
+                                System.out.println("That position is already taken. Pick another position.");
+                            }
                             break;
                     }
                     if(guessedPos == -1) {
