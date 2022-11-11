@@ -127,10 +127,18 @@ public class TicTacToeGame implements IGame{
                 } catch (Exception e) {
                     System.out.println("Bad guess, please select a valid position");
                 }
-                // TODO: check if pos it taken, if not add to guesses
             }
             printGame();
-
+            over = checkBoardForWin();
+            if(over) {
+                System.out.print("Congrats! ");
+                if(isX) {
+                    System.out.print("X");
+                } else {
+                    System.out.print("O");
+                }
+                System.out.println(" won the game!\n");
+            }
             // switch turn
             if(isX) {
                 isX = false;
@@ -162,5 +170,36 @@ public class TicTacToeGame implements IGame{
             }
         }
         System.out.println("");
+    }
+
+    public boolean checkBoardForWin() {
+        if(guesses[0][0] != 0 && guesses[0][0] == guesses[0][1] && guesses[0][1] == guesses[0][2]) {
+            return true;
+        }
+        if(guesses[1][0] != 0 && guesses[1][0] == guesses[1][1] && guesses[1][1] == guesses[1][2]) {
+            return true;
+        }
+        if(guesses[2][0] != 0 && guesses[2][0] == guesses[2][1] && guesses[2][1] == guesses[2][2]) {
+            return true;
+        }
+
+        if(guesses[0][0] != 0 && guesses[0][0] == guesses[1][0] && guesses[1][0] == guesses[2][0]) {
+            return true;
+        }
+        if(guesses[0][1] != 0 && guesses[0][1] == guesses[1][1] && guesses[1][1] == guesses[2][1]) {
+            return true;
+        }
+        if(guesses[0][2] != 0 && guesses[0][2] == guesses[1][2] && guesses[1][2] == guesses[2][2]) {
+            return true;
+        }
+
+        if(guesses[0][0] != 0 && guesses[0][0] == guesses[1][1] && guesses[1][1] == guesses[2][2]) {
+            return true;
+        }
+        if(guesses[0][2] != 0 && guesses[0][2] == guesses[1][1] && guesses[1][1] == guesses[2][0]) {
+            return true;
+        }
+
+        return false;
     }
 }
