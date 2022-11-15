@@ -51,7 +51,7 @@ public class RunGame {
                     game.execute();
                     break;
                 case "2":
-                    game = TicTacToeGame.getInstance(3);
+                    game = TicTacToeGame.getInstance();
                     game.execute();
                     break;
                 case "-1":

@@ -11,20 +11,19 @@ public class TicTacToeGame implements IGame{
 
     private static Scanner scnr;
 
-    public static TicTacToeGame getInstance(int boardSize) {
+    public static TicTacToeGame getInstance() {
         if(ticTacToe == null) {
-            ticTacToe = new TicTacToeGame(boardSize);
         }
         return ticTacToe;
     }
 
-    private TicTacToeGame(int boardSize) {
-        drawBoardRow = new String(new char[(boardSize*2)+1]).replace("\0", "_");
-        guesses = new int[boardSize][boardSize];
+    private TicTacToeGame() {
+        drawBoardRow = new String(new char[7]).replace("\0", "_");
         scnr = new Scanner(System.in);
     }
 
     public void execute() {
+        guesses = new int[3][3];
         boolean over = false;
         boolean isX = true;
         char currMark = 'X';
