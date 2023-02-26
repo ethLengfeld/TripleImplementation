@@ -5,3 +5,4 @@
 database.ini
 .gradle*
 build/
+.idea
