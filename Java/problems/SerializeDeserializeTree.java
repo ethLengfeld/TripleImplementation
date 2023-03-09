@@ -22,4 +22,16 @@ package problems;
  * assert deserialize(serialize(node)).left.left.val == 'left.left'
  */
 public class SerializeDeserializeTree {
+
+    class Node {
+        private int value;
+        private Node left;
+        private Node right;
+
+        public Node(int value, Node left, Node right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
