@@ -53,4 +53,5 @@ public class NextPositiveInteger {
         int expected = 3;
         assertEquals(expected, nextPos);
     }
+
 }
